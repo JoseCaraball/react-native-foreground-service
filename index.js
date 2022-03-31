@@ -4,10 +4,10 @@
 
 'use strict';
 
-import { NativeModules, NativeEventEmitter } from 'react-native';
+import {NativeModules, NativeEventEmitter, Platform} from 'react-native';
 
 const ForegroundServiceModule = NativeModules.VIForegroundService;
-const EventEmitter = new NativeEventEmitter(ForegroundServiceModule);
+const EventEmitter = Platform.OS === 'ios' ? {} : new NativeEventEmitter(ForegroundServiceModule);
 
 /**
  * @property {string} channelId - Notification channel id to display notification
